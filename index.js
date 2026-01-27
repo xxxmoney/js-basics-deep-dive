@@ -109,6 +109,10 @@ numbers.pop(); // numbers is now [4, 5, 6]
 // Or remove the first element
 numbers.shift(); // numbers is now [5, 6]
 
+// Similarly, as with arrays, we can also use indexes to work with strings
+const firstChar = greeting[0]; // firstChar is 'H'
+const secondChar = greeting[1]; // secondChar is 'i'
+
 // Objects - collection of key-value pairs
 let person = { name: "Bob", age: 30 };
 person = { name: "Charlie", age: 35 };
