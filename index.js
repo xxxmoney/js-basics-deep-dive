@@ -153,3 +153,60 @@ myArray.push(4); // myArray is now [1, 2, 3, 4]
 const myObject = { a: 1, b: 2 };
 myObject.c = 3; // myObject is now { a: 1, b: 2, c: 3 }
 myObject.a = 10; // myObject is now { a: 10, b: 2, c: 3 }
+
+
+
+//
+// Operators
+//
+
+// Now as we know how to use data, store said data in variables, we would also like to somehow work with some data
+// There are operators - symbols used to perform operations on data (thus also on variables holding data)
+// Funnily enough, we already know 1 operator - the assignment operator "="
+// - This operator assigns a value to a variable
+let score; // We can also firstly create variable without value
+score = 100; // Here we use the assignment operator to assign number 100 to variable "score"
+
+// Other common operators:
+// Arithmetic operators - mainly used to perform mathematical operations
+const a = 10;
+const b = 5;
+const sum = a + b; // Addition, sum is 15
+const difference = a - b; // Subtraction, difference is 5
+const product = a * b; // Multiplication, product is 50
+const quotient = a / b; // Division, quotient is 2
+const remainder = a % b; // Modulus, remainder is 0   
+const increment = ++a; // Increment, a is now 11, increment is 11
+const decrement = --b; // Decrement, b is now 4, decrement is 4
+// Some also work for strings
+const firstMessagePart = "Hello, ";
+const secondMessagePart = "World!";
+const message = firstMessagePart + secondMessagePart; // Concatenation, message is "Hello, World!"
+
+// Comparison operators - used to compare two values - returns boolean result
+const isEqual = (a == b); // Equality, isEqual is false
+const isNotEqual = (a != b); // Inequality, isNotEqual is true
+const isGreater = (a > b); // Greater than, isGreater is true
+const isLess = (a < b); // Less than, isLess is false
+const isGreaterOrEqual = (a >= b); // Greater than or equal to, isGreaterOrEqual is true
+const isLessOrEqual = (a <= b); // Less than or equal to, isLessOrEqual is false    
+// Fun fact - in JavaScript, comparison can be done lazily or strictly - examples above are lazy
+// - When presented with different data types, JavaScript tries to convert them to a common type
+const lazyEqual = (5 == "5"); // true, because "5" is converted to number 5
+// On other hand, strict comparison checks both value and type
+const strictEqual = (5 === "5"); // false, because types are different
+// It's generally recommended to use strict comparison (=== and !==) to avoid unexpected type conversions shenanigans
+
+// Logical operators - used to combine or invert boolean values
+const boolA = true;
+const boolB = false;
+const andResult = boolA && boolB; // Logical AND, andResult is false
+const orResult = boolA || boolB; // Logical OR, orResult is true
+const notResult = !boolA; // Logical NOT, notResult is false
+// These are mainly used in conditionals and loops - which we will cover later
+
+//
+// Conditions
+//
+
+// TODO: add ifs, etc
