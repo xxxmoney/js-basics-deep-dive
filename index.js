@@ -169,15 +169,15 @@ score = 100; // Here we use the assignment operator to assign number 100 to vari
 
 // Other common operators:
 // Arithmetic operators - mainly used to perform mathematical operations
-const a = 10;
-const b = 5;
+let a = 10;
+let b = 5;
 const sum = a + b; // Addition, sum is 15
 const difference = a - b; // Subtraction, difference is 5
 const product = a * b; // Multiplication, product is 50
 const quotient = a / b; // Division, quotient is 2
 const remainder = a % b; // Modulus, remainder is 0   
-const increment = ++a; // Increment, a is now 11, increment is 11
-const decrement = --b; // Decrement, b is now 4, decrement is 4
+a++; // Increment, a is now 11
+b--; // Decrement, b is now 4
 // Some also work for strings
 const firstMessagePart = "Hello, ";
 const secondMessagePart = "World!";
