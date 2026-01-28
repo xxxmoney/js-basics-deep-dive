@@ -145,7 +145,7 @@ anotherArray[0] = 5; // We set 5 to the first element of "array"
 
 // Objects are also reference types - same concept applies
 const obj1 = { key: "value" }; // Create new object
-const obj2 = obj1; // obj2 references the same object as "obj1"
+let obj2 = obj1; // obj2 references the same object as "obj1"
 obj2.key = "newValue"; // Modify the key in "obj2"
 // This will also affect "obj1" - they both reference the same object
 
@@ -158,7 +158,15 @@ const myObject = { a: 1, b: 2 };
 myObject.c = 3; // myObject is now { a: 1, b: 2, c: 3 }
 myObject.a = 10; // myObject is now { a: 10, b: 2, c: 3 }
 
-
+// Regarding arrays and objects, we also have to introduce two 'types'
+// - null - similar to c# - represents "no value" or "empty value"
+let emptyValue = null; // This variable holds no value
+// - undefined - now this is a bs of JavaScript - because it essentially has "two null types"
+//  - easily explained, undefined is used when something is not defined - for example a variable which is not yet set, etc
+//  - you might encounter undefined more often than null
+//  - rule of thumb - undefined is used for general not defined variables, null is used when we explicitly want to say "no value"
+let notAssigned; // This variable is declared but not assigned - its value is undefined
+let undefinedVariable = undefined; // This variable is explicitly set to undefined
 
 //
 // Operators
@@ -208,6 +216,18 @@ const andResult = boolA && boolB; // Logical AND, andResult is false
 const orResult = boolA || boolB; // Logical OR, orResult is true
 const notResult = !boolA; // Logical NOT, notResult is false
 // These are mainly used in conditionals and loops - which we will cover later
+
+// Null/undefined operators - used to provide a default value when dealing with null or undefined
+// Imagine this scenario - we have an object
+let user; // User is not yet defined
+// We could have some code which accesses the user
+// Now that code could crash
+
+//const userName = user.name; // This would crash
+const userName = user?.name; // Instead, we can use this - and now it won't crash - the ? means if there is null or undefined, don't even try accessing the property (in this case name)
+
+// We also have coalescing operator - this just tells it - what value to use if it's null or undefined
+const displayName = user?.name ?? "Guest"; // If user or user.name is null/undefined, use "Guest"
 
 //
 // Conditions
