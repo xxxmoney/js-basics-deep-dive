@@ -233,4 +233,18 @@ const displayName = user?.name ?? "Guest"; // If user or user.name is null/undef
 // Conditions
 //
 
-// TODO: add ifs, etc
+// TODO:
+
+
+//
+// Loops
+//
+
+// TODO:
+
+
+// 
+// Functions
+// 
+
+// TODO:
