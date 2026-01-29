@@ -125,6 +125,8 @@ let personName = person.name; // personName is "Charlie"
 let personAge = person.age; // personAge is 35
 // We can also add new key-value pairs
 person.city = "New York"; // person is now { name: "Charlie", age: 35, city: "New York" }
+// We can also access them this way - similar to arrays - we use key in square brackets
+let personCity = person["city"]; // personCity is "New York"
 // Or we can remove key-value pairs
 delete person.age; // person is now { name: "Charlie", city: "New York" }
 
