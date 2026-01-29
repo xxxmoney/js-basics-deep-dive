@@ -219,7 +219,7 @@ const notResult = !boolA; // Logical NOT, notResult is false
 
 // Null/undefined operators - used to provide a default value when dealing with null or undefined
 // Imagine this scenario - we have an object
-let user; // User is not yet defined
+let user; // User is not yet defined - so its value is now "undefined"
 // We could have some code which accesses the user
 // Now that code could crash
 
@@ -233,8 +233,81 @@ const displayName = user?.name ?? "Guest"; // If user or user.name is null/undef
 // Conditions
 //
 
-// TODO:
+// Now, we might also want to have some code which execuites only in some cases
+// For example we might have an object with user, user has age, and we would like to execute a code only if the age of user is greater or equal to 18
+const someUser = { username: 'Shinei', age: 20 }; 
+if (someUser.age >= 18) { // Notice we use comparison operator here - condition can take a boolean value
+    someUser.hasLegalAge = true; // And this code only executes if the condition is true
+}
+else { // Else execuites when the condition in the "if" is false
+    someUser.hasLegalAge = false; // This code executes if the condition is false
+}
 
+// Interesting things about JavaScript - conditions not only take boolean values, but also regular values
+// This is called truthy and falsy values
+// So basically you can take "anything" and just put it in the condition
+// JavaScript then evaluates the value
+// There are some given truthy and falsy values for each data type
+
+// Numbers
+// Falsy - 0, NaN (not a number)
+// Truthy - any other number
+if (0) {    
+    // This code won't execute - 0 is falsy
+}
+if (42) {
+    // This code will execute - 42 is truthy
+}
+
+// Strings
+// Falsy - empty string ""
+// Truthy - any other string
+if ("") {
+    // This code won't execute - empty string is falsy
+}
+if ("Hello darkness my old friend") {
+    // This code will execute - non-empty string is truthy
+}
+
+// Arrays
+// Falsy - none
+// Truthy - any array (even empty array) - important - you might think empty arrays are falsy, but they are not
+if ([]) {
+    // This code will execute - empty array is truthy
+}
+if ([1, 2, 3]) {
+    // This code will execute - non-empty array is truthy
+}
+
+// Side note - if you want to check for empty array, use the length property - you can use the truthy of the length property, because it's a number
+const arr = [];
+if (arr.length) {
+    // This code won't execute - length is 0, which is falsy
+}
+arr.push(1);
+if (arr.length) {
+    // This code will execute - length is 1, which is truthy
+}
+
+// Objects
+// Falsy - none
+// Truthy - any object (even empty object) - same as arrays, empty objects are also truthy
+if ({}) {
+    // This code will execute - empty object is truthy
+}
+if ({ key: "value" }) {
+    // This code will execute - non-empty object is truthy
+}
+
+// Null and Undefined
+// Falsy - both of them - null, undefined
+// Truthy - none
+if (null) {
+    // This code won't execute - null is falsy
+}
+if (undefined) {
+    // This code won't execute - undefined is falsy
+}
 
 //
 // Loops
