@@ -425,11 +425,64 @@ const anotherResultOfAddition = addTwoNumbersResult;
 
 // Hopefully you understand functions now - they are essential in making a clean, reusable code
 
+
+
 //
 // Naming things - making an order out of wild west
 //
 
-// TODO:
+// You might have been thinking - but if we can name the variables almost however we like, why couldn't we use names like "x", "y", "data", "my_super_value", "MyVariable123", etc
+// Technically you could
+// But try thinking again - why should we try to write code that is understandable to others?
+// Well, because usually, we don't work alone on proejcts - we work with other people
+// Setting up guidelines and rules helps with helping everyone involved - that everyone can somewhat understand code of others
+// Basically the end goal is to have guidelines to not make this full wild west
+
+// Rule of thumb - try make make the name of thing you name - be it variable, function, object, etc - 
+// - Short, concise and descriptive
+// - Do NOT use abbreviations unless commonly known
+// - Do NOT use overly long names
+// - Do NOT use non-descriptive names such as x, y, etc (exceptions in for loop, etc)
+// For example, we could have a function which adds two numbers and returns the result, let's think of some examples of naming it
+// - takeTwoNumberAddThemTogetherAndReturn - this one is too descriptive, too long, imagine calling this function in code just to add two numbers
+// - calc - this doesn't tell us much - we might presume calc means calculate - but what to calculate?
+// - addNumbers - this is concise, short and descriptive - one thing I would exclude is numbers - depends, but we don't need to tell parameter name (this is usually clear from the method parameters themselves)
+// - add - this is even shorter, still descriptive - as we know what add means
+function add(numberOne, numberTwo) { // This is an example of short and descriptive function name, while the meaning is also clear - that's because of the parameters
+    return numberOne + numberTwo;
+}
+// overall, there are many hard things in programming, one of them is indeed naming variables
+// Because there's no concrete - one-rule-them-all specific guide - there are just some "loose" guidelines, and you have to do with it
+// Small bit of advice - try thinking about the overall context and usage of the things you name - in the example above, we name the function add - why not be more descriptive? Because what the function does is already aparent from its parameters
+// In similar sense, if we had some code block, we could name things shorter - because the meaning of the variable may be apparent from code context 
+function calculateAreaOfRectangle(width, height) { // Notice how here we use descriptive name - because without "OfRectangle" in name, it wouldn't be apparent from parameters what area does it calculate"
+    const area = width * height; // Here, we could just name the variable "area" - because the context is apparent = we don't need to name it "rectangleArea"
+    return area;
+}
+// This method should obvisouly be named many ways - like calculateRectangleArea, getAreaOfRectangle, etc
+// When making your own project, try sticking to "one way" - like using "Of" in names for calculations, etc
+// When working in a team, try following the team/company guidelines - they might have their own naming conventions
+// Overall, try survive the naming hell pls >]
+
+// Anyways, the guidelines might differ company to company, team to team, etc
+// But there are usually high-level guidelines for languages
+// Usually, casing guidelines are language based
+
+// Casing - how to write names and separate words
+// There are many ways to write variable names, some of them are named
+// - camelCase - first word lowercase, subsequent words start with uppercase letter - myVariableName
+// - PascalCase - each word starts with uppercase letter - MyVariableName
+// - snake_case - words are separated by underscores, all lowercase - my_variable_name
+// - kebab-case - words are separated by hyphens, all lowercase - my-variable-name (not usable in JavaScript variable names, but used in file names, etc)
+// But wait, you might ask, why is there a need for casing?
+// Well, because usually, we name functions and variables with using multiple words - and we just cannot use spaces, that's not supported in variable names
+// So we need some way to separate the words - thus the casing styles
+// So for example, as we have already did, let's write a variable name
+const userAge = 30; // This is camelCase - used for variable and function names in JavaScript
+function getUserName() { // Also camelCase - function name
+    return "Alice";
+}
+const UserProfile = { name: "Bob", age: 25 }; // This would be PascalCase - not used for variable names in JavaScript
 
 
 
