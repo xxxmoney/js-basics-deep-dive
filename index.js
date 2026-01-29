@@ -64,11 +64,15 @@ false;
 // - Object - a collection of key-value pairs, defined using curly braces {}
 ({ name: "John", age: 30 });
 ({ brand: "Toyota", model: "Camry", year: 2020 });
+// Not necessarily a data type, but important to mention - JSON - JavaScript Object Notation - a data format
+// - It's essentially a string representation of an object or array - notice how it looks veeery similar to the object, it's just a string (remember this, it might be useful later)
+'{"name": "John", "age": 30}';
+'[1, 2, 3, 4, 5]';
 
 
 
 //
-// Variables
+// Let's name our values and store them - variables to rescue!
 //
 
 // Right, so now, we know how to make statements with some data, but how to actually use this data and store it?
@@ -169,7 +173,7 @@ let notAssigned; // This variable is declared but not assigned - its value is un
 let undefinedVariable = undefined; // This variable is explicitly set to undefined
 
 //
-// Operators
+// Operating with operators
 //
 
 // Now as we know how to use data, store said data in variables, we would also like to somehow work with some data
@@ -230,7 +234,7 @@ const userName = user?.name; // Instead, we can use this - and now it won't cras
 const displayName = user?.name ?? "Guest"; // If user or user.name is null/undefined, use "Guest"
 
 //
-// Conditions
+// The buidling block of code bases - conditions
 //
 
 // Now, we might also want to have some code which execuites only in some cases
@@ -252,7 +256,7 @@ else { // Else execuites if the condition in "if" is false - so in this case bot
 // JavaScript then evaluates the value
 // There are some given truthy and falsy values for each data type
 
-// Numbers
+// Numbers, just numbers
 // Falsy - 0, NaN (not a number)
 // Truthy - any other number
 if (0) {    
@@ -262,7 +266,7 @@ if (42) {
     // This code will execute - 42 is truthy
 }
 
-// Strings
+// Sequence on characters? Strings!
 // Falsy - empty string ""
 // Truthy - any other string
 if ("") {
@@ -272,7 +276,7 @@ if ("Hello darkness my old friend") {
     // This code will execute - non-empty string is truthy
 }
 
-// Arrays
+// Sequence of values - arrays
 // Falsy - none
 // Truthy - any array (even empty array) - important - you might think empty arrays are falsy, but they are not
 if ([]) {
@@ -313,7 +317,7 @@ if (undefined) {
 }
 
 //
-// Loops
+// Looping with loops
 //
 
 // Great, now we know how to make variables, use conditions, but imagine this - how would execute same code multiple times?
@@ -352,7 +356,120 @@ while (countdown > 0) { // Here we set the condition - while countdown is greate
 } 
 
 // 
-// Functions
+// Imagine a code block, but with name, and we can call it - functions!
 // 
 
+// Great, just amazing! Now we know how to create variables, use some conditions, repeat code using loops
+// But let's now imagine this - what if we have code that we need to use in multiple places - like some code for addition, etc
+// Wouldn't it be great to have something which can be "called" from multiple places?
+// Well we are in luck, introducing the F U N C T I O N S
+
+// We can think of functions as "named code blocks" - we give them a name, and we can call them by that name
+// Let's look at this simple example
+function doSomeSillyStuff() { // We use the "function" keyword, we then specify name of the function, and then we write the code block
+    const sillyNumber = 69;
+    const sillyMessage = "Lmao: "
+    const finalSillyMessage = sillyMessage + sillyNumber; // This literally does nothing of value, just an example >]
+}
+
+// Great, we have a named code block, how to use it? Simple - let's call it!
+doSomeSillyStuff(); // This calls the function - the code in the function will now execute
+// You can imagine it as "placing the code block here" - the code block will be in this place and will be executed:
+{
+    const sillyNumber = 69;
+    const sillyMessage = "Lmao: "
+    const finalSillyMessage = sillyMessage + sillyNumber; // This literally does nothing of value, just an example >]
+}
+
+// Well this is great, but how do we make something of some value? 
+// Let's thinkg - how would be this code block be useful? Hmmm, only if it could give us some value back...
+// Fear not, we can to this - introducing "return"
+// With "returh" keyword, the funciton can give us some value back - which we can use in our current code
+function giveMeSomeSillyStuff() { // It's a similar function to the one above, but notice how now we use the "return" keyword
+    const sillyNumber = 69;
+    const sillyMessage = "Lmao: "
+    const finalSillyMessage = sillyMessage + sillyNumber;
+
+    return finalSillyMessage;
+}
+// This function can be used like this
+const sillyResult = giveMeSomeSillyStuff(); // We have called the function, it excecuited its code block in its scope, and then gave us a value which we can use in our scope
+const ultimateSillyMessage = sillyResult + "!!!"; // Of course the variable can be used here - and it has the value returned - in this case "Lmao: 69" - the value "calculated" in the function
+
+// Now with this, the usefulness of functions increased by at least 49% or maybe 51%
+
+// But... What if we could go.. Even FURTHER BEYOND?
+// What if we could give the function some data to work with? - not just having to work with data from outside scope, but give it data directly - basically pass the data to it?
+// The parameters - a way to pass data to functions
+// With this, we can now start making some useful functions
+function addTwoNumbers(num1, num2) { // In the little parentheses, we define parameters - just the names - as this is JavaScript, we don't need to define types here (so funnily, you can call the function with "anything")
+    const sum = num1 + num2;    
+    return sum; // We return the sum of the two numbers (of course, we could directly return num1 + num2, but this is for example clarity)
+
+    // By the way, code here won't get execuited - as the return statement exits the function
+}
+// Now this is some useful funciton, yeh?
+const resultOfAddition = addTwoNumbers(10, 20); // We call the function, it returns number 30 (because its logic uses the + operator (which adds numbers) and returns result)
+
+// You can imagine it as something like this:
+//const anotherResultOfAddition = addTwoNumbers(5, 10); - commented, below is the "represantion" of the used function
+// The variable addTwoNumbersResult is used for this example - to get the value from the code block scope
+const num1 = 10; // The first parameter
+const num2 = 20; // The Second parameter
+let addTwoNumbersResult;
+{
+    const sum = num1 + num2;
+    addTwoNumbersResult = sum;
+}
+const anotherResultOfAddition = addTwoNumbersResult;
+
+// Hopefully you understand functions now - they are essential in making a clean, reusable code
+
+//
+// Naming things - making an order out of wild west
+//
+
 // TODO:
+
+
+
+//
+// Not all functions need to be defined by us (and alas not all objects?)
+//
+
+// Great, as we know now how to define our functions, let's look at some built-in functions in JavaScript
+// Essentially, we will be using (or misusing) global objects - these objects are available everywhere in the code
+// These global objects provide us with the "built in" functions
+
+// Console - the magical place where we can print stuff
+// Printing to console - seems uninteresting, but it's actually very useful
+// It helps with understanding, going through code, etc
+// In JavaScript, we can use the console.log() function to print stuff to console - very similar to C#'s Console.WriteLine()
+console.log("Can we get much higher?"); // console.log prints the provided parameter - in this case string
+// We can also supplement it with other data types
+console.log(42); // prints number 42
+console.log(true); // prints boolean true
+console.log([1, 2, 3]); // prints array [1, 2, 3]
+console.log({ key: "value" }); // prints object { key: "value" }
+
+// console.log can take multiple parameters - it will print them all, separated by space
+console.log("The cake is", true, "?", "or is it lie?", 666); // prints "The cake is true ? or is it lie? 666"
+
+
+// JSON
+// Remember the string repesentation of object/array we mentioned at the start?
+// Now, we do not need to manually create these strings - we can use the JSON global object
+// It has two main functions - JSON.stringify() and JSON.parse()
+// JSON.stringify() - takes an object or array and converts it to JSON string
+const userObject = { name: "Johan", personalInfo: null, secretInfo: undefined };
+const userJsonString = JSON.stringify(userObject); // userJsonString is now '{"name":"Johan","personalInfo":null}' - notice how the undefined value is omitted in JSON string - this is the use case of null - as we want to represent "no value"
+// JSON.parse() - takes a JSON string and converts it back to object or array
+const jsonString = '{"name":"Johan","personalInfo":null}';
+const parsedObject = JSON.parse(jsonString); // parsedObject is now { name: "Johan", personalInfo: null } - notice how the parsed object has no undefined value, as it was not present in the JSON string
+
+
+// Side note - we might not mention this much here in the basics, but console is a global object - meaning it's available everywhere in the code
+// In client side code in browser, it's a part of window object - which is the global object in browser environment - the window object provides useful APIs we can work with
+// But this is a just a mention of this - course of this basics is focused mainly on pure JavaScript, not browser APIs, etc
+
+
