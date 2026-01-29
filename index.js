@@ -237,10 +237,13 @@ const displayName = user?.name ?? "Guest"; // If user or user.name is null/undef
 // For example we might have an object with user, user has age, and we would like to execute a code only if the age of user is greater or equal to 18
 const someUser = { username: 'Shinei', age: 20 }; 
 if (someUser.age >= 18) { // Notice we use comparison operator here - condition can take a boolean value
-    someUser.hasLegalAge = true; // And this code only executes if the condition is true
+    someUser.legalAge = "Full"; // And this code only executes if the condition is true
 }
-else { // Else execuites when the condition in the "if" is false
-    someUser.hasLegalAge = false; // This code executes if the condition is false
+else if (someUser.age >= 15) {
+    someUser.legalAge = "Partial"; // This code executes if the first condition is false, but this one is true
+}
+else { // Else execuites if the condition in "if" is false - so in this case both previous conditions must be false to execute
+    someUser.legalAge = "None"; // This code executes if the condition is false
 }
 
 // Interesting things about JavaScript - conditions not only take boolean values, but also regular values
@@ -313,8 +316,40 @@ if (undefined) {
 // Loops
 //
 
-// TODO:
+// Great, now we know how to make variables, use conditions, but imagine this - how would execute same code multiple times?
+// Intorducing loops - a breakthrough in looping technology
 
+// There are two main types of loops
+// - for loop - uses an index and condition how many times to loop
+// - while loop - uses a condition to determine how many times to loop
+
+// For loop example - we want to execuite the code 5 times
+let iterationCount = 0;
+for (let i = 0; i < 5; i++) { // Here we declare variable i, set condition i <= 5, and increment i by 1 each iteration
+    iterationCount = iterationCount + 1; // This code executes 5 times, iterationCount will be 5 after the loop
+    // iterationCount += 1; Note - we can also use this - this is just shorthand for the above line
+    // Or even this - this is called increment operator
+    // iterationCount++; - increments by one
+}
+
+// Amazing - now we know how to execuite code multiple times
+// Let's use this for some more useful practice
+// Imagine we have an array - and we might want to sum all the numbers in the array
+const someNumbers = [1, 2, 3, 4, 5];
+let someNumbersSums = 0;
+for (let i = 0; i < someNumbers.length; i++) { // We use someNumbers.length to get the length of the array - we tell the for loop to go from 0 to length of the array minus 1 (minus 1 because the condition is less than)
+    someNumbersSums += someNumbers[i]; // We can use the index to accesss the element in array - and because this goes through all indexes - it goes through all elements in array - in our case, calculating the sum of all numbers
+}
+
+// Great, now for the while lopp
+let countdown = 5;
+while (countdown > 0) { // Here we set the condition - while countdown is greater than 0
+    countdown--; // We decrement countdown by 1 each iteration
+    // This code will execute 5 times - when countdown reaches 0, the condition becomes false and the loop stops
+
+    // We could of course also execuite other code here - same in the for loops
+    // In the beginning, scope was mentioned - the thing in the curly braces "{}" (NOT the object, the code in curly braces) - you can imagine this as executing a scope multiple times
+} 
 
 // 
 // Functions
