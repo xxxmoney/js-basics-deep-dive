@@ -53,8 +53,8 @@
 125.67;
 45;
 // - String - a sequence of characters, used to represent text - defined using single or double quotes
-"Hello, World!";
-'JavaScript is fun! Or maybe, well, nah.';
+// "Hello, World!";
+// 'JavaScript is fun! Or maybe, well, nah.';
 // - Boolean - represents a logical entity, can be either true or false
 true;
 false;
@@ -135,7 +135,7 @@ delete person.age; // person is now { name: "Charlie", city: "New York" }
 // - Reference types - these store a reference to the data (array, object, etc)
 
 // What does this mean? When we use primitive type and assign it to another variable, it copies the actual data
-const numberOne = 10; // This creates new variable "numberOne" with value 10
+let numberOne = 10; // This creates new variable "numberOne" with value 10
 const numberTwo = numberOne; // Variable "numberTwo" now holds a copy of the value of "numberOne" (meaning it holds number 10)
 // If we now change "numberOne", "numberTwo" remains the same
 numberOne = 20; // "numberOne" is now 20, but "numberTwo" is still 10
@@ -528,3 +528,202 @@ const parsedObject = JSON.parse(jsonString); // parsedObject is now { name: "Joh
 // But this is a just a mention of this - course of this basics is focused mainly on pure JavaScript, not browser APIs, etc
 
 
+
+//
+// Classes
+//
+
+// Now, it wouldn't be a "full language" without some OOP, eh?
+// Introducing - classes
+// Yes, even JavaScript has classes
+
+// Firstly, let's understand what class is
+// As we now know, we understand objects - a collection of key-value pairs
+// Class is a blueprint for creating objects
+// Additionally, classes can have methods - functions associated with the class - that can operate on the data within the class
+
+// Let's do some simple example with person
+class Person {
+    // This way we can define fields - these are properties of the class - basically the key-value pairs of the object
+    name;
+    age; 
+
+    // This is contructor - a special method called when creating the object
+    // As it's a method, it has parameters
+    // It's usual purpose is to set initial values for the fields - like in here
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // This is a method - a function associated with the class
+    getGreetMessage() {
+        return `Hello, my name is ${this.name} and I am ${this.age} years old.`; // Important keyword here is "this" - it refers to the current instance of the class (like we can have some object with some name and age, this refers to that specific object)
+    }
+}
+
+// Let's create an instance of person
+const personInstanceOne = new Person("Diana", 28); // We use the "new" keyword to create a new instance of the class - this calls the constructor
+console.log(personInstanceOne.name); // We can access the fields of the instance - this will be "Diana"
+console.log(personInstanceOne.age); // Of course we can also access age - this will be 28
+const greetMessage = personInstanceOne.getGreetMessage(); // We can call the method on the instance - this will be "Hello, my name is Diana and I am 28 years old."
+console.log(greetMessage);
+
+// We can create multiple instances of the class
+const personInstanceTwo = new Person("Ethan", 35);
+const anotherGreetMessage = personInstanceTwo.getGreetMessage(); // This will be "Hello, my name is Ethan and I am 35 years old."
+console.log(anotherGreetMessage);
+
+
+// Let's try more complex example - with private fields
+class BankAccount {
+    accountNumber; // Usual field
+    #balance; // But what is this? - this is a private field - meaning it cannot be accessed from outside the class
+    #password; // Another private field
+
+    constructor(accountNumber, initialBalance, password) {
+        this.accountNumber = accountNumber;
+        this.#balance = initialBalance;
+        this.#password = password;
+    }
+
+    deposit(amount) {
+        if (amount <= 0) {
+            return false; // Invalid amount
+        }
+
+        this.#balance += amount;
+        return true;
+    }
+    withdraw(amount, password) {
+        if (password !== this.#password) {
+            return false; // Invalid password
+        }
+
+        if (amount <= this.#balance) {
+            this.#balance -= amount;
+            return true;
+        } else {
+            return false; // Not enough balance
+        }
+    }
+
+    getBalance(password) {
+        if (password === this.#password) {
+            return this.#balance;
+        } else {
+            return null; // Invalid password
+        }
+    }
+}
+
+const account = new BankAccount("123456789", 1000, "securePassword123");
+// We can work with this instance of BankAccount
+account.deposit(500);
+console.log(account.withdraw(2000, "anotherPassword")); // false - incorrect password
+console.log(account.withdraw(2000, "securePassword123")); // false - not enough balance
+console.log(account.withdraw(300, "securePassword123")); // true - withdrawal successful
+
+// We can also access the account number
+console.log(account.accountNumber); // "123456789"
+console.log(account.getBalance("securePassword123")); // 1200
+console.log(account.getBalance("wrongPassword")); // null
+
+// But we cannot access the balance directly - because it's private!
+// console.log(account.#balance); // This would throw an error
+
+// Now, classes have also other speical feature - such as getters, setters and static methods/properties
+
+class Rectangle {
+    #width;
+    #height;
+
+    constructor(width, height) {
+        this.#width = width;
+        this.#height = height;
+    }
+
+    // Getter is used to run a function, return value, but use it like a property
+    // In this case, we can have private fields, getters to access them, but no setters - making the fields effectively read-only from outside the class
+    get width() {
+        return this.#width;
+    }
+    get height() {
+        return this.#height;
+    }
+
+    get area() {
+        return this.width * this.height;
+    }
+
+    // Setter - similar to getter, but used to set value
+    set dimensions(size) {
+        this.#width = size;
+        this.#height = size;
+    }
+
+    // Static method - belongs to the class itself, not to instances
+    static calculatePerimeter(width, height) {
+        return 2 * (width + height);
+    }
+}
+
+const rectangle = new Rectangle(10, 5);
+// rectangle.#width = 20; // This would throw an error - cannot access private field
+// But we can use the getters:
+console.log(rectangle.width); // 10
+console.log(rectangle.height); // 5
+console.log(rectangle.area); // 50
+
+// The setter also works
+rectangle.dimensions = 30;
+console.log(rectangle.width); // 30
+console.log(rectangle.height); // 30
+
+// To use the static method, we must use the Rectangle class itself
+const perimeter = Rectangle.calculatePerimeter(2, 4); // 12
+console.log(perimeter);
+
+// Last but not least - inheritance
+// A way to have a class inherit properties and methods from another class
+
+// We define simple animal class
+class Animal {
+    name; // Public field name
+
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        return `${this.name} makes a noise.`;
+    }
+}
+
+// The extends keyword means inheritance - now Squirrel has access to things Animal has, including the method
+class Squirrel extends Animal { // Squirrel class inherits from Animal class
+    // Notice how we don't define the field here
+
+    constructor(name) {
+        // Keyword super is used to call the constructor of the parent class - so of the Animal class
+        super(name);
+    }
+}
+
+// We can also do another interesting thing - change the behavior of the inherited method
+class Dog extends Animal { // Dog class inherits from Animal class
+    constructor(name) {
+        super(name); // Call the constructor of the parent class
+    }
+
+    // With this, we override the speak method from Animal class
+    speak() {
+        return `${this.name} barks.`; // Override the speak method
+    }
+}
+
+const squirrel = new Squirrel("Sammy");
+console.log(squirrel.speak()); // "Sammy makes a noise."
+
+const dog = new Dog("Buddy");
+console.log(dog.speak()); // "Buddy barks."
