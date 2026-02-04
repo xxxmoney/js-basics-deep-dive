@@ -1,4 +1,6 @@
 
+// NOTE: this advanced section should be learned after going thorugh the basics in index.js!
+
 // This is our example library script file
 // We want to define some functions in this file, and have them availabile elsewhere
 // This is used with EXPORT

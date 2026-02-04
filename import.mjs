@@ -1,9 +1,10 @@
 
+// NOTE: this advanced section should be learned after going thorugh the basics in index.js!
+
 // 
 // Import/Export
 //
 
-// Note: this advanced section should be learned after going thorugh the basics in index.js
 // Without further ado, let's do it!
 
 // Now, we know the basics of JavaScript, its caveats, etc
