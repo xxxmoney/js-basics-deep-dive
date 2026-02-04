@@ -19,6 +19,21 @@
 
 
 
+// 
+// Where we can run JavaScript
+//
+
+// JavaScript is mainly used in web browser - for interacting with the website - by using the script tag or script reference
+// But it can also be used outside of browser - using Node.js runtime environment
+// I would like you to understand the RUNTIME (Browser or Node.Js) simply - they are just "black boxes" which can run the JavaScript code
+// To make this example easier to understand - I recommend getting the Node.Js
+// - Firstly make sure if you don't already have it - type `node -v` in terminal
+// - If not, download it: https://nodejs.org/en/download
+// If you now have node installed, great - you can actually run this whole files using node
+// - ``node index.js`` - this will run the file and execute the code in it without browser
+
+
+
 //
 // Syntax
 // 
