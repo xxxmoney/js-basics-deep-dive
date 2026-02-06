@@ -742,4 +742,4 @@ console.log(squirrel.speak()); // "Sammy makes a noise."
 
 const dog = new Dog("Buddy");
 console.log(dog.speak()); // "Buddy barks."
-
+console.log(dog.name);
