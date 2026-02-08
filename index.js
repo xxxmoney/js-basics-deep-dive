@@ -815,3 +815,41 @@ resolvedPromise.finally(() => {
 });
 
 /* Microtasks (Promise - async/await) */
+// Good, so we now understand the premise of promises (heh)
+// But this syntax could get clunky fast - especially if we have multiple asynchronous operations, and we need to chain them
+// - we would end up with a "callback hell" - where we have multiple nested callbacks
+// For this reason, there is a new syntax for working with asyncrhonous operations - async/await
+
+// The syntax is rather simple - let's create a new promise first
+const somePromise = new Promise((resolve, reject) => {
+    resolve("Async/Await is cool!");
+}); // We have created a new promise and resolved it with a value
+
+// Now, instead of using .then() and .catch(), we can use async/await
+// Along with try/catch
+// TLDR for try catch - this syntax is used to handle errors
+// If something throws an error, we can use try catch to catch that error
+// - We can for example log the error, and let other code below run
+
+// Anyways, the await keyword can be used in function with async keyword
+// Let's create a function to demonstrate this:
+async function getData() { // See that we first specified the async keyword - with this we can use await
+    try {
+        const somePromiseResult = await somePromise; // Here we use await - something similar to .then(), but we can get the result in this scope directly
+        console.log("Promise fulfilled with value:", somePromiseResult); 
+    }
+    catch (error) {
+        console.log("Error caught:", error); // If there was an error, we would get it here
+    }
+}
+
+const getDataPromise = getData(); // We call the function to see the result
+// Important note - as this function is async, it returns a promise
+// What we know about promises - they get executed AFTER the current code
+
+// Another thing - .then() syntax and async/await syntax can get comined
+// So we could for example use .then() on the getDataPromise
+
+getDataPromise.then(() => {
+    console.log("Function getData has completed"); // This will get called once the getData function has completed - meaning the promise returned by getData is fulfilled
+});
