@@ -893,3 +893,50 @@ const getDataPromise = getData(); // We call the function to see the result
 getDataPromise.then(() => {
     console.log("Function getData has completed"); // This will get called once the getData function has completed - meaning the promise returned by getData is fulfilled
 });
+
+
+
+//
+// Fetch API
+//
+
+// As we now understand the aync operations, let's look ata very practical example of this
+// The Fetch API
+// - TLDR - a way to make HTTP requests from JavaScript
+// - So in other words, how to get data from server
+
+// Horaay, finnaly, we can get some data, let's do it
+// The fetch function is called with the URL
+// By default, the HTTP request is GET
+const getPromise = fetch("https://jsonplaceholder.typicode.com/todos/1"); 
+// The fetch function returns a promise - which gets fulfilled once the response is received
+// Keep in mind as it is a promise, we have to handle it as promise - so either .then() syntax or async/await syntax - to get the data from the response
+
+// Let's get the data
+async function getDataFromGetPromise() {
+    const response = await getPromise; // We await the promise returned by fetch - this will give us the response object
+    const jsonData = await response.json(); // We then have to call .json() to get json from it
+    // If it was only text, we would use .text(), or in other formats such as blob .blob(), etc
+    console.log("Data received from fetch:", jsonData); // This will log the data received from the fetch request   
+}
+getDataFromGetPromise();
+
+// The Fetch method has also other parameters - such as setting the method (POST, PUT, DELETE, etc), setting headers, body, etc
+// For example, if we wanted to make a POST request with some JSON data, we could do it like this:
+const postPromise = fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST", // We set the method to POST
+    headers: {
+        "Content-Type": "application/json" // We set the content type to JSON
+    },
+    body: JSON.stringify({ value: 'Some Text' }) // We set the body of the request - we have to stringify the JSON data
+});
+
+async function getDataFromPostPromise() {
+    const response = await postPromise;
+    const jsonData = await response.json();
+    console.log("Data received from POST fetch:", jsonData);
+}
+getDataFromPostPromise();
+
+// With this, now you should be able to understand how to get data from server, how to handle async requests, etc - GREAT!
+
