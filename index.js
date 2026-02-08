@@ -744,6 +744,7 @@ const dog = new Dog("Buddy");
 console.log(dog.speak()); // "Buddy barks."
 
 
+
 //
 // Asynchronous operations
 //
@@ -752,16 +753,54 @@ console.log(dog.speak()); // "Buddy barks."
 // There are situations when we need to execute code not in synchronous way
 
 // First thing to undertstand - browser JavaScript in single-threaded - meaning we are not really doing any parralelism
-// What we are doing is cheating - with the usage of Event Loop (https://javascript.info/event-loop)
+// What we are doing is "cheating" - with the usage of Event Loop (https://javascript.info/event-loop)
 // - TLDR - there are two main queues - for the main code and for the asynchronous code
 // - The asynchronous code has two sub queues - microtasks and macrotasks
 //  - Microtasks - "true" asynchronous operations - promises, async/await, etc
 //  - Macrotasks - some callbacks which should be executed - setInterval, setTimeout, DOM events, etc
+// The Event Loop is looking at these queues and is taking thingys to run from them
+// - It firstly looks at the main code queue - if there is something to execute, it executes it
+// - If there is nothing to execute in the main code queue, it looks at the microtasks queue - if there is something to execute, it executes it
+// - If there is nothing to execute in the microtasks queue, it looks at the macrotasks queue - if there is something to execute, it executes it
 
-// Making heads or tails out o this
+// Making heads or tails out of this
 // - Firstly, our main JavaScript code gets executed - like the code we have been writing so far
 // - Then, if we have used any Microtasks - like Promises, this gets executed - but ONLY if there is not other code to be executed not (so we have essentially gone to the bottom of the script file)
 // - After this, if there are no Microtasks (thus also no main code to execute), Mactotasks get executed - like setTimeout
+
+
+/* Macrotasks (setInterval, setTimeout) */
+
+// Let's start with Macrotasks - as they might be easier to understand
+// The example is setInterval and setTimeout
+// Both of them take some sort of callback
+// And this callback gets executed after specified time (in milliseconds)
+
+// setTimeout - executes the callback once after the specified timeout
+setTimeout(() => {
+    console.log("This is a setTimeout callback - it executes once after 2 seconds");
+}, 2000); // The callback will execute once after 2000 milliseconds (2 seconds)
+// So how will it work - all the code here in this script file get executed - including this 
+// The setTimeout function set the callback on the Macrotask queue
+// And it says - ok, this can get executed after 2 seconds - so after 2 seconds, if there is no other code to execute, this callback will get executed
+// Meaning when you run this code, this code should hang for at least 2 seconds and then print the message
+
+// setInterval - executes the callback repeatedly, with a fixed time delay between each call
+const intervalId = setInterval(() => {
+    console.log("This is a setInterval callback - it executes every 3 seconds");
+}, 3000); // The callback will execute every 3000 milliseconds (3 seconds)
+// But that's not good - this will keep running forever
+// That's also why we have captured the result of setInterval to variable
+// - Because it is the id of the interval
+// - With this, we can kill it when we want - with clearInterval function
+
+// Let's cheakily use another setTimeout to kill the interval after 10 seconds
+setTimeout(() => {
+    clearInterval(intervalId); // This will stop the interval from executing further
+    console.log("Interval has been cleared - it won't execute anymore");
+}, 10000); // This will execute once after 10 seconds - it will clear the interval
+
+// The clear method also exists for setTimeout - it's called clearTimeout - it works the same way - you capture the id of the timeout, and then you can clear it before it executes
 
 
 /* Microtasks (Promise) */
