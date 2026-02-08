@@ -742,3 +742,76 @@ console.log(squirrel.speak()); // "Sammy makes a noise."
 
 const dog = new Dog("Buddy");
 console.log(dog.speak()); // "Buddy barks."
+
+
+//
+// Asynchronous operations
+//
+
+// So far, we have been (mostly) executing code sequentially - synchronously
+// There are situations when we need to execute code not in synchronous way
+
+// First thing to undertstand - browser JavaScript in single-threaded - meaning we are not really doing any parralelism
+// What we are doing is cheating - with the usage of Event Loop (https://javascript.info/event-loop)
+// - TLDR - there are two main queues - for the main code and for the asynchronous code
+// - The asynchronous code has two sub queues - microtasks and macrotasks
+//  - Microtasks - "true" asynchronous operations - promises, async/await, etc
+//  - Macrotasks - some callbacks which should be executed - setInterval, setTimeout, DOM events, etc
+
+// Making heads or tails out o this
+// - Firstly, our main JavaScript code gets executed - like the code we have been writing so far
+// - Then, if we have used any Microtasks - like Promises, this gets executed - but ONLY if there is not other code to be executed not (so we have essentially gone to the bottom of the script file)
+// - After this, if there are no Microtasks (thus also no main code to execute), Mactotasks get executed - like setTimeout
+
+
+/* Microtasks (Promise) */
+
+// Great, but what are Microtasks? 
+// Let's start with the most prominent example - Promise
+// Promise is simply something "promised" to be done in the future
+// You can also image it as a "task" which has some state
+// - Pending - the initial state, the task is not yet completed
+// - Fulfilled - the task is completed successfully, and has a result
+// - Rejected - the task is completed with an error, and has a reason for the rejection
+
+// Let's make an example of creating a promise:
+const resolvedPromise = new Promise((resolve, reject) => {
+    resolve("Value");
+});
+// With this, we have created a promise - the method inside is a callback - it takes two parameters - resolve and reject - these are functions we can call to change the state of the promise
+// So in the example above, we call the resolve function - meaning the promise will be Fulfilled
+const rejectedPromise = new Promise((resolve, reject) => {
+    reject("Error");
+});
+// In this case, we call the reject function - meaning the promise will be Rejected
+
+// But only with this, Promises would be kinda useless
+// We need a way to work with them - like do something on Fullfillment, or on Rejection
+// For this, we have .then() and .catch() methods
+resolvedPromise.then((value) => {
+    console.log("Promise fulfilled with value:", value);  // The callback in "then" gets called on Fulfillment of the promise - the value passed to resolve function is passed as parameter to the callback
+}
+).catch((error) => {
+    console.log("Promise rejected with error:", error);  // This would get called on Rejection of the promise - so it won't get called here
+});
+
+rejectedPromise.then((value) => {
+    console.log("Promise fulfilled with value:", value); // This won't get called - because the promise is rejected, not fulfilled
+}
+).catch((error) => {
+    console.log("Promise rejected with error:", error); // This will get called - because the promise is rejected - the error passed to reject function is passed as parameter to the callback
+});
+
+// This whole won't make much sense for this usage, but imagine we call some method - for example some method for getting data from server
+// This method would return promise
+// This way, we could easily set callbacks on what to do when the data is received succcessfully, or if there is an error
+// Because of this, we don't have to worry when it will happend
+// - Because we have specified the callback, once the data is received, "then" is called
+// - If there is an error, "catch" is called
+
+// We also have an option to execute a callback regardless of the outcome - whether the promise is fulfilled or rejected - with .finally() method
+resolvedPromise.finally(() => {
+    console.log("Promise has been settled (either fulfilled or rejected)");
+});
+
+/* Microtasks (Promise - async/await) */
