@@ -754,7 +754,8 @@ console.log(dog.speak()); // "Buddy barks."
 
 // First thing to undertstand - browser JavaScript in single-threaded - meaning we are not really doing any parralelism
 // What we are doing is "cheating" - with the usage of Event Loop (https://javascript.info/event-loop)
-// - TLDR - there are two main queues - for the main code and for the asynchronous code
+// - TLDR - there is a big loop (basically while(true)) which runs and looks at what is hould execute - it takes things to execute from different queues - the main code queue, microtasks queue and macrotasks queue
+// - there are two main queues - for the main code and for the asynchronous code
 // - The asynchronous code has two sub queues - microtasks and macrotasks
 //  - Microtasks - "true" asynchronous operations - promises, async/await, etc
 //  - Macrotasks - some callbacks which should be executed - setInterval, setTimeout, DOM events, etc
