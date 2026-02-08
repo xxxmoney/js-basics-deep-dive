@@ -940,3 +940,45 @@ getDataFromPostPromise();
 
 // With this, now you should be able to understand how to get data from server, how to handle async requests, etc - GREAT!
 
+
+//
+// JSDoc
+//
+
+// As we know, JavaScript is dynamically typed - meaning we don't have to specify types for variables, function parameters, etc
+// But what if we had a way to define at least what the types should be?
+// JSDoc is a way to add type annotations and documentation to JavaScript code
+
+// Let's do an example right away on an example funciton
+
+/**
+ * Adds two numbers
+ * 
+ * @param {number} numberOne - The first number
+ * @param {number} numberTwo - The second number
+ * @returns {number} The sum of the two numbers
+*/
+function add(numberOne, numberTwo) {
+    return numberOne + numberTwo;
+}
+
+// And that's really it - it just specified what the types should be, along with some commentary - pretty neat, eh?
+// By the way, this also works for variables, objects, etc - you can specify types for them as well
+
+/**
+ * @type {string}
+ */
+const someString = "Hello, JSDoc!";
+const someObject = {
+    /**
+     * @type {number}
+     * This is the age of the person
+     * 
+     *  @example
+     * // This is how you can use this property
+     * someObject.age = 30;
+     */
+    age: 25
+};
+
+
