@@ -653,6 +653,7 @@ console.log(messageWithTemplateLiteral);
 
 
 /* Mutable Array Methods */
+
 // Starting with mutable methods - we may as well know some of these methods
 const mutableArray = [1, 2, 3];
 console.log("Original Mutable Array:", mutableArray);
@@ -703,6 +704,66 @@ console.log("Mutable Array after Descending Sort:", mutableArray);
 // - Subsequent parameters are the elements to add (if any)
 mutableArray.splice(1, 1, 42, 43); // This will start at index 1, remove 1 element (the element at index 1), and then add 42 and 43 at that index
 console.log("Mutable Array after (start at index 1, remove 1 element at index 1, add 42 and 43 from index 1) Splice:", mutableArray);
+
+
+/* Immutable Array Methods */
+
+// Great, so now we know methods that affect the original array
+// Let's now talk about methods which create new array - the original array stays the same
+
+// Filter
+// Very used function - it filters element based on the function we provide
+// - The function takes an element and returns boolean - true to keep the element, false to exclude it
+const immutableArray = [1, 2, 3, 4, 5];
+
+const filteredArray = immutableArray.filter(num => num % 2 === 0); // This will create new array with only even numbers
+console.log("Original Immutable Array:", immutableArray);
+console.log("Filtered Array (only even numbers):", filteredArray);
+
+// Map
+// Another great, useful function - it transforms each element based on the function we provide
+// - The function takes an element and returns the transformed element
+const mappedArray = immutableArray.map(num => ({ original: num, squared: num * num })); // This will create new array with objects - each object has original number and its square
+// On this example it can be seen that we can return also objects - while the original array ways with numbers
+// We can also return just numbers, or strings, etc - it's up to us
+console.log("Mapped Array (object each number squared):", mappedArray);
+
+// Reduce
+// This is a bit more complex function - it reduces the array to a single value based on the function we provide
+// Essentially, it takes a value (accumulator) through the whole array and does the function logic for each element
+// - The function takes the accumulator and the current element, and returns the new value of the accumulator
+const sumWithReduce = immutableArray.reduce((accumulator, current) => accumulator + current, 0); 
+// The last parameter (0) is the number we start with
+// First parameter is accumulator - the value that gets changed each iteration - basically with the accumulator, we "carry" value from previous iteration
+// - First iteration - 0 (initial value) + 1 (first element) = 1 (new accumulator value)
+// - Second iteration - 1 (accumulator from previous iteration) + 2 (second element) = 3 (new accumulator value)
+// - Third iteration - 3 (accumulator from previous iteration) + 3 (third element) = 6 (new accumulator value)
+// - ... And so on
+// Second parameter is the current element in the array
+console.log("Sum of Immutable Array with Reduce:", sumWithReduce);
+
+// Concat
+// A simple function - it concatenates two arrays - creating new array with elements from both arrays   
+const anotherImmutableArray = [6, 7, 8];
+const concatenatedArray = immutableArray.concat(anotherImmutableArray); // This will create new array with elements from both arrays
+console.log("Concatenated Array:", concatenatedArray);
+
+// Join
+// Retuns a string with all elements joined by specified separator
+const joinedString = immutableArray.join(", ");
+console.log("Joined String:", joinedString);
+// Very userful for creating string representation of array
+
+// Slice
+// takes a portion of the original array and returns it as new array (shallow copy)
+const slicedArray = immutableArray.slice(1, 4); // This will create new array with elements from index 1 to index 3 (as the end is exclusive, it means it will NOT affect the element at index 4)
+console.log("Sliced Array (from index 1 to index 3):", slicedArray);
+
+// ToSpliced
+// Just a Splice, but now immutable variation - returns new array - it does not modify the original array
+const toSplicedArray = immutableArray.toSpliced(1, 2, 42, 43);
+console.log("Original Immutable Array after toSpliced:", immutableArray);
+console.log("ToSpliced Array (start at index 1, remove 2 elements at index 1 and 2, add 42 and 43 from index 1):", toSplicedArray);
 
 
 
