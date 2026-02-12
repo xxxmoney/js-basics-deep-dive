@@ -551,7 +551,7 @@ const parsedObject = JSON.parse(jsonString); // parsedObject is now { name: "Joh
 // So far, we have been working with simple JavaScript syntax - similar to other C languages
 // But JavaScript has its own special syntax for some usages
 
-/* Arrow functions */
+/* Arrow Functions */
 // Let's start with alternative way of writing function - just imagine it as alternative syntax
 // It's main advantage is when we use anonymous function - functions without name - like passing function directly in some other function, etc
 function calculateNumber(number, calculationFunction) { // Here the variable can be function
@@ -573,7 +573,7 @@ const arrowResult = calculateNumber(5, (num) => { // This is an arrow function -
 const evenShorterArrowResult = calculateNumber(5, num => num * num); // Wow - so short, right?
 
 
-/* Spread operator */
+/* Spread Operator */
 
 // Now imagine a use case when we would like to create new array with same elements
 // Right now, we would do it something like this
@@ -605,7 +605,7 @@ const extendedMineObject = { ...mineObject, key3: "value3" };
 // Both of these have copy of the values from original, but also have some additional values/properties
 
 
-/* Rest parameter - honorable mention */
+/* Rest Parameter - honorable mention */
 
 // Just a quick mention - this is similar to params in C#
 // Meaning we can have loads of parameters - like loads of numbers
@@ -622,6 +622,14 @@ const sumAllNumbersResultFiveParameters = sumAllNumbers(1, 2, 3, 4, 5); // Here 
 const sumAllNumbersResultTwoParameters = sumAllNumbers(10, 20); // Here we have 2 parameters
 console.log("Sum of 1, 2, 3, 4, 5 is:", sumAllNumbersResultFiveParameters);
 console.log("Sum of 10, 20 is:", sumAllNumbersResultTwoParameters);
+
+
+/* Template Literals */
+
+// Also a cool mention - with backticks - "`" in string, we can directly include variables in the string (like C#'s string interpolation)
+const someRandomNumber = 0;
+const messageWithTemplateLiteral = `Just a number with literal: ${someRandomNumber}.`;
+console.log(messageWithTemplateLiteral);
 
 
 
