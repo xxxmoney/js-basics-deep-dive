@@ -604,6 +604,17 @@ const extendedMineArray = [...mineArray, 4, 5];
 const extendedMineObject = { ...mineObject, key3: "value3" };
 // Both of these have copy of the values from original, but also have some additional values/properties
 
+/* Destructuring Operator */
+ 
+// Very similar to Spread Operator, is getting specific values from object
+// Like not every property using the spread operator, but just specific ones
+const anotherUser = { name: "Alice", age: 30, city: "New York" };
+const { city } = anotherUser; // Here we can just get a variable city from anotherUser
+console.log("City extracted using destructuring:", city);
+// We can also use aliases here:
+const { name: userNameAlias } = anotherUser;
+console.log("Name extracted using destructuring with alias:", userNameAlias);
+
 
 /* Rest Parameter - honorable mention */
 
@@ -627,9 +638,11 @@ console.log("Sum of 10, 20 is:", sumAllNumbersResultTwoParameters);
 /* Template Literals */
 
 // Also a cool mention - with backticks - "`" in string, we can directly include variables in the string (like C#'s string interpolation)
-const someRandomNumber = 0;
+const someRandomNumber = 88;
 const messageWithTemplateLiteral = `Just a number with literal: ${someRandomNumber}.`;
 console.log(messageWithTemplateLiteral);
+
+/*  */
 
 
 
