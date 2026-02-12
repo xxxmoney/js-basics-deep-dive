@@ -616,6 +616,7 @@ const { name: userNameAlias } = anotherUser;
 console.log("Name extracted using destructuring with alias:", userNameAlias);
 
 
+
 /* Rest Parameter - honorable mention */
 
 // Just a quick mention - this is similar to params in C#
