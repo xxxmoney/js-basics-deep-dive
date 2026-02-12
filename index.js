@@ -616,7 +616,6 @@ const { name: userNameAlias } = anotherUser;
 console.log("Name extracted using destructuring with alias:", userNameAlias);
 
 
-
 /* Rest Parameter - honorable mention */
 
 // Just a quick mention - this is similar to params in C#
@@ -643,7 +642,12 @@ const someRandomNumber = 88;
 const messageWithTemplateLiteral = `Just a number with literal: ${someRandomNumber}.`;
 console.log(messageWithTemplateLiteral);
 
-/*  */
+
+//
+// Modern JavaScript Syntax - Array
+//
+
+// TODO - immutable, mutable functions, etc
 
 
 
