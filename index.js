@@ -605,6 +605,25 @@ const extendedMineObject = { ...mineObject, key3: "value3" };
 // Both of these have copy of the values from original, but also have some additional values/properties
 
 
+/* Rest parameter - honorable mention */
+
+// Just a quick mention - this is similar to params in C#
+// Meaning we can have loads of parameters - like loads of numbers
+
+// Example
+function sumAllNumbers(...numbers) { // The "..." here is the rest parameter
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    return sum;
+}
+const sumAllNumbersResultFiveParameters = sumAllNumbers(1, 2, 3, 4, 5); // Here we have 5 parameters
+const sumAllNumbersResultTwoParameters = sumAllNumbers(10, 20); // Here we have 2 parameters
+console.log("Sum of 1, 2, 3, 4, 5 is:", sumAllNumbersResultFiveParameters);
+console.log("Sum of 10, 20 is:", sumAllNumbersResultTwoParameters);
+
+
 
 //
 // Classes
