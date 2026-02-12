@@ -573,6 +573,39 @@ const arrowResult = calculateNumber(5, (num) => { // This is an arrow function -
 const evenShorterArrowResult = calculateNumber(5, num => num * num); // Wow - so short, right?
 
 
+/* Spread operator */
+
+// Now imagine a use case when we would like to create new array with same elements
+// Right now, we would do it something like this
+const mineArray = [1, 2, 3];
+const mineArrayCopy = [];
+for (let i = 0; i < mineArray.length; i++) { // We would need to loop and append for each element
+    mineArrayCopy.push(mineArray[i]);
+}
+
+// But now watch this syntax
+const mineArrayCopyWithSpread = [...mineArray]; // This little thingy - the three dots - "..." - this is the spread operator
+// What spread operator does is that it "extracts" elements, for example from array - we can then use this to initialize new array - cool, right?
+console.log("Mine Array Copy is not same as original:", mineArrayCopyWithSpread === mineArray); // False, different references
+
+// Also, this works for objects as well
+const mineObject = { key1: "value1", key2: "value2" };
+const mineObjectCopyWithSpread = { ...mineObject }; // Also copy
+console.log("Mine Object Copy is not same as original:", mineObjectCopyWithSpread === mineObject); // False, different references
+
+// IMPORTANT - the spread operator creates a SHALLOW copy - meaning in this case:
+const nestedObject = { key: "value", nested: { nestedKey: "nestedValue" } };
+const nestedObjectCopy = { ...nestedObject }; 
+console.log("Nested Object Copy is not same as original:", nestedObjectCopy === nestedObject); // False, different references
+console.log("Nested Object Copy's nested is SAME as original's nested:", nestedObjectCopy.nested === nestedObject.nested); // IMPORTANT - true, because the nested object still uses the SAME reference
+
+// Also, with this syntax, you can create arrays/objects with additional values/properties
+const extendedMineArray = [...mineArray, 4, 5]; 
+const extendedMineObject = { ...mineObject, key3: "value3" };
+// Both of these have copy of the values from original, but also have some additional values/properties
+
+
+
 //
 // Classes
 //
