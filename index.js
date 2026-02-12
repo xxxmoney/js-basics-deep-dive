@@ -638,8 +638,8 @@ console.log("Sum of 10, 20 is:", sumAllNumbersResultTwoParameters);
 /* Template Literals */
 
 // Also a cool mention - with backticks - "`" in string, we can directly include variables in the string (like C#'s string interpolation)
-const someRandomNumber = 88;
-const messageWithTemplateLiteral = `Just a number with literal: ${someRandomNumber}.`;
+const anotherSomeNumber = 88;
+const messageWithTemplateLiteral = `Just a number with literal: ${anotherSomeNumber}.`;
 console.log(messageWithTemplateLiteral);
 
 
@@ -647,7 +647,62 @@ console.log(messageWithTemplateLiteral);
 // Modern JavaScript Syntax - Array
 //
 
-// TODO - immutable, mutable functions, etc
+// Great - so now, we have have advanced with basic grasp of advanced JavaScript syntax - let's continue
+// Another part of this is the array - in modern JavaScript, we have built-in useful methods for arrays
+// Let's break this down to two groups - one returns new array - immutable, and another modifies the original array - mutable
+
+
+/* Mutable Array Methods */
+// Starting with mutable methods - we may as well know some of these methods
+const mutableArray = [1, 2, 3];
+console.log("Original Mutable Array:", mutableArray);
+
+// Push
+// We already know this simple method - it adds new element to the end of the array
+mutableArray.push(4); // New element 4 is added at the end
+console.log("Mutable Array after 4 Push:", mutableArray);
+
+// Pop
+// Removes the last element from the array and returns it
+const poppedElement = mutableArray.pop(); // Last element is removed and returned
+console.log("Popped Element:", poppedElement);
+console.log("Mutable Array after Pop:", mutableArray);
+
+// Shift
+// Like Pop, but removes from start
+const shiftedElement = mutableArray.shift(); // First element is removed and returned
+console.log("Shifted Element:", shiftedElement);
+console.log("Mutable Array after Shift:", mutableArray);
+
+// Unshift
+// Similar to Push, but adds to start
+mutableArray.unshift(99); // New element is added at the start
+console.log("Mutable Array after 99 Unshift:", mutableArray);
+
+// Reverse
+// Rather simple function - reverse the whole array
+mutableArray.reverse();
+console.log("Mutable Array after Reverse:", mutableArray);
+
+// Sort
+// A bit more complex function - sorts the array by specified function
+// - The function take two parameters to compare
+// - Negative value - first parameters is before second
+// - Positive value - second parameter is after first
+// - Zero - they are equal
+mutableArray.sort((a, b) => a - b); // This will sort the array in ascending order (beacuse every time a is bigger then b, it's positive, meaning b comes after a)
+console.log("Mutable Array after Ascending Sort:", mutableArray);
+// For descending order, we can just swap a and b
+mutableArray.sort((a, b) => b - a); // This will sort the array in descending order (beacuse every time a is bigger then b, it's negative, meaning a comes after b)
+console.log("Mutable Array after Descending Sort:", mutableArray);
+
+// Splice
+// Also a bit complex function - it can add/remove elements at specified index
+// - First parameter is the index to start at
+// - Second parameter is how many elements to remove
+// - Subsequent parameters are the elements to add (if any)
+mutableArray.splice(1, 1, 42, 43); // This will start at index 1, remove 1 element (the element at index 1), and then add 42 and 43 at that index
+console.log("Mutable Array after (start at index 1, remove 1 element at index 1, add 42 and 43 from index 1) Splice:", mutableArray);
 
 
 
