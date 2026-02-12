@@ -545,6 +545,35 @@ const parsedObject = JSON.parse(jsonString); // parsedObject is now { name: "Joh
 
 
 //
+// Modern JavaScript Syntax - some cool stuff
+//
+
+// So far, we have been working with simple JavaScript syntax - similar to other C languages
+// But JavaScript has its own special syntax for some usages
+
+/* Arrow functions */
+// Let's start with alternative way of writing function - just imagine it as alternative syntax
+// It's main advantage is when we use anonymous function - functions without name - like passing function directly in some other function, etc
+function calculateNumber(number, calculationFunction) { // Here the variable can be function
+    return calculationFunction(number); // Because we presume the variable is function, we can cal it
+}
+
+// Example usage
+const result = calculateNumber(5, function (num) { // Here we pass an anonymous function - a function without name - as the second parameter
+    return num * num; // This function takes a number and returns its square
+});
+
+// With arrow functions, we can do this
+const arrowResult = calculateNumber(5, (num) => { // This is an arrow function - notice the syntax - we use "=>" to separate parameters and function body
+    return num * num; // This function does the same thing as the previous one - it takes a number and returns its square
+});
+
+// Isn't it pretty cool? Similar syntax, shorter
+// Oh, one more thing - when returning value directly, arrow function can be even shorter, look
+const evenShorterArrowResult = calculateNumber(5, num => num * num); // Wow - so short, right?
+
+
+//
 // Classes
 //
 
